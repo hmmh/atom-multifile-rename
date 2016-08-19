@@ -43,13 +43,14 @@ class Dialog extends View
   getNewName: (pattern, file) ->
     patternParts = pattern.split '*'
     result = ""
-    console.log this.countLetter(pattern, '\\*'), file.placeholders.length
-    for i in [0..this.countLetter(pattern, '\\*')-1]
-      result = result + patternParts[i]
-      console.log "inside", i
-      if i < file.placeholders.length
-        result = result + file.placeholders[i]
-    result + patternParts[patternParts.length-1]
+    if this.countLetter(pattern, '\\*') != 0
+      for i in [0..this.countLetter(pattern, '\\*')-1]
+        result = result + patternParts[i]
+        if i < file.placeholders.length
+          result = result + file.placeholders[i]
+      result + patternParts[patternParts.length-1]
+    else
+      file.name
 
   updatePreviewList: (pattern) ->
     @newNamesList.empty()
