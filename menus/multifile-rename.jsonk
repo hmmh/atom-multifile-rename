@@ -1,0 +1,18 @@
+{
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Multifile Rename",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "multifile-rename:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
