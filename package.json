@@ -3,12 +3,12 @@
   "main": "./lib/multifile-rename",
   "version": "0.0.0",
   "description": "A package that lets you rename multiple files",
-  "keywords": [],
+  "keywords": ["rename", "files", "multiple", "rename files"],
   "activationCommands": {
     "atom-workspace": "multifile-rename:toggle",
     ".tree-view": "multifile-rename:rename"
   },
-  "repository": "https://github.com/atom/multifile-rename",
+  "repository": "https://github.com/hmmh/atom-multifile-rename",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
