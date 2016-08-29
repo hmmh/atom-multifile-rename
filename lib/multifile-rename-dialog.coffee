@@ -1,5 +1,7 @@
 {$, TextEditorView, SelectListView, View} = require 'atom-space-pen-views'
 
+{CompositeDisposable} = require 'atom'
+
 path = require 'path'
 _ = require 'underscore'
 fs = require 'fs-plus'
@@ -19,8 +21,9 @@ class Dialog extends View
           @ul class: 'list-group', outlet: 'newNamesList'
 
   initialize: () ->
+    @subscriptions = new CompositeDisposable
     @selectedFiles = []
-    # @patternEditor.on 'blur', => @close() if document.hasFocus()
+    # @patternEditor.on 'blur', => @cancel() if document.hasFocus()
     atom.commands.add @element,
       'core:confirm': => @onConfirm(@patternEditor.getText())
       'core:cancel': => @cancel()
@@ -32,7 +35,12 @@ class Dialog extends View
     @patternEditor.setText(pattern)
     @patternEditor.focus()
     _.each @selectedFiles, ((file) ->
-      @oldNamesList.append('<li>' + file.name + '</li>')
+      tooltip = $('<div class="placeholders-tooltip">Placeholders:<ul></ul></div>')
+      _.each file.placeholders, (placeholder) ->
+        tooltip.find('ul').append('<li>&quot;' + placeholder + '&quot;</li>')
+      li = $('<li><div>' + file.name + '</div></li>')
+      li.find('div').append(tooltip)
+      @oldNamesList.append(li)
     ), this
     @updatePreviewList(pattern)
     @panel.show()
@@ -71,6 +79,7 @@ class Dialog extends View
     @close()
 
   close: ->
+    @subscriptions.dispose()
     panelToDestroy = @panel
     @panel = null
     panelToDestroy?.destroy()
