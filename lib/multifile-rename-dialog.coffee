@@ -72,12 +72,9 @@ class Dialog extends View
       file = @selectedFiles[i]
 
       @selectedFiles[i].newName = @getNewName(pattern, file)
-      seperator = '/';
-      if (@selectedFiles[i].path.indexOf('\\') !== -1)
-        seperator = '\\';
 
-      if fs.isFileSync(@selectedFiles[i].path+seperator+@selectedFiles[i].name)
-        fs.moveSync(@selectedFiles[i].path+seperator+@selectedFiles[i].name, @selectedFiles[i].path+seperator+@selectedFiles[i].newName)
+      if fs.isFileSync(@selectedFiles[i].path+'/'+@selectedFiles[i].name)
+        fs.moveSync(@selectedFiles[i].path+'/'+@selectedFiles[i].name, @selectedFiles[i].path+'/'+@selectedFiles[i].newName)
       i++
 
     @close()
