@@ -73,7 +73,7 @@ class Dialog extends View
 
       @selectedFiles[i].newName = @getNewName(pattern, file)
       seperator = '/';
-      if (@selectedFiles[i].path.indexOf('\\'))
+      if (@selectedFiles[i].path.indexOf('\\') !== -1)
         seperator = '\\';
 
       if fs.isFileSync(@selectedFiles[i].path+seperator+@selectedFiles[i].name)
