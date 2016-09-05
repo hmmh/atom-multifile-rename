@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "atom-space-pen-views": "^2.2.0",
-    "fs-plus": "^2.9.1"
+    "fs-plus": "^2.9.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "underscore": "^1.8.3"
