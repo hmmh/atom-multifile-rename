@@ -1,5 +1,5 @@
 'context-menu':
-  '.tree-view.multi-select':
+  '.tree-view .multi-select':
     [{label: 'Rename Files', command:  'multifile-rename:rename'}]
 
 
